@@ -23,7 +23,7 @@ all_posts_df$body <- gsub("gt", " ", all_posts_df$body)
 ##This line of code is for the next files to work properly.
 all_posts_df$createdAt <- as.character(all_posts_df$createdAt)
 
-# Filter rows with body column length greater than 4000 characters
+# Filter rows with body column length greater than 100 characters
 all_posts_df <- all_posts_df %>%
   filter(nchar(body) > 100)
 
