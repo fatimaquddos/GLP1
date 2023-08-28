@@ -41,5 +41,5 @@ def calProp(sampNo=1):
     TSdf.to_csv(f"Sample{sampNo}ClustersProportion.csv")
 
 
-# Calculate proportion of clusters for monthly time series for Sample 1 & 2
+# Calculate proportion of clusters for monthly time series
 calProp()
