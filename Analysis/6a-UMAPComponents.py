@@ -9,7 +9,7 @@ os.chdir(new_working_directory)
 
 # Define a function to run UMAP algorithm on Sample 1
 def runUMAP():
-    # Load Sample 1 embeddings obtained from script "4b"
+    # Load embeddings obtained from script "4b"
     df = pd.read_csv("Sample1Embeddings.csv")
 
     # Check the format of the embeddings data; identified as "str" in this case
