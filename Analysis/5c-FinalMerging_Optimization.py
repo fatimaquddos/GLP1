@@ -37,7 +37,7 @@ df.loc[df['labels'] == 46, ['labels']] = 6
 df.loc[df['labels'] == 47, ['labels']] = 7
 df.loc[df['labels'] == 48, ['labels']] = 8
 
-# Check the labels and their respective counts to confirm the correct changes for sample 1
+# Check the labels and their respective counts to confirm the correct changes
 print(df['labels'].value_counts())
 
 # Save the Final cluster labels to the local disk
