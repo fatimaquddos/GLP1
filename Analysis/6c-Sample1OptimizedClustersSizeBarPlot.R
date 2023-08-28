@@ -31,32 +31,3 @@ BAR <- ggplot(Sample1MainClusterSizes, aes(x=Sample1MainClusters, y=prct, fill =
   scale_y_continuous(limits=c(0,0.30), labels = scales::percent_format(accuracy = 1))
 
 BAR
-
-plots <- lapply(ll <- list.files(patt='.*[.]png'),function(x){
-  img <- as.raster(readPNG(x))
-  rasterGrob(img, interpolate = FALSE)
-})
-
-library(tidyverse)
-library(patchwork)
-
-
-# Create a grid arrangement for the raster plots
-grid_plots <- do.call(arrangeGrob, plots)
-
-# Arrange and annotate all plots using cowplot's wrap_plots
-final_plot <- wrap_plots(
-  wrap_plots(UMAP, BAR, design = "AB\nCD") +
-    plot_annotation(tag_levels = c("A")),
-  grid_plots,
-  ncol = 2
-)
-
-wrap_plots(plots,
-           design = "AB") +
-  plot_annotation(tag_levels = c("A"))
-
-wrap_plots(plots, UMAP, BAR,
-           design = "AB") +
-  plot_annotation(tag_levels = c("A"))
-
