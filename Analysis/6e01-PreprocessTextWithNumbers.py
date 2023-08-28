@@ -14,7 +14,7 @@ os.chdir(new_working_directory)
 
 # LOAD DATA ==>
 
-# Create SQL engine to retrieve the data from Table "A" and "B" in reddit.db database
+# Create SQL engine to retrieve the data from Table "A" in reddit.db database
 # First provide path of the local reddit.db file;
 
 
