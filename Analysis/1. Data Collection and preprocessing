@@ -1,0 +1,37 @@
+##Step 1: Import the dataset from google drive
+all_posts_df <- read_csv("glp1_keyword_2023-07-22_04-33-09-526.csv")
+
+##Step 2: Selecting relevant columns
+
+all_posts_df <- all_posts_df |>
+  #filter(dataType == "post") |>
+  dplyr::select(c("body","id","communityName","title","username","createdAt"))
+
+#Get rid of NA's from posts
+all_posts_df$title[is.na(all_posts_df$title)] <- " "
+
+##Combine them
+all_posts_df$body <- paste(all_posts_df$title, " ", all_posts_df$body)
+
+##Removing the title column and removing moderator, http related posts and gt from body
+all_posts_df <- subset(all_posts_df, select = -title)
+all_posts_df <- all_posts_df %>% 
+  filter(!grepl("moderator", body)) %>% 
+  filter(!grepl("http", body))
+all_posts_df$body <- gsub("gt", " ", all_posts_df$body)
+
+##This line of code is for the next files to work properly.
+all_posts_df$createdAt <- as.character(all_posts_df$createdAt)
+
+# Filter rows with body column length greater than 4000 characters
+all_posts_df <- all_posts_df %>%
+  filter(nchar(body) > 100)
+
+# Specify the file path for the SQLite database
+db_file <- "testredditpost.sqlite"
+
+# Create an SQLite database connection
+my_db <- dbConnect(RSQLite::SQLite(), db_file)
+cleaned_reddit_test_post <- data.frame(all_posts_df)
+dbWriteTable(my_db, "my_table", cleaned_reddit_test_post)
+dbDisconnect(my_db)
