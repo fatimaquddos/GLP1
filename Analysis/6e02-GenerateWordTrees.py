@@ -1,4 +1,4 @@
-# This script was used to generate WordTrees.html interactive webpages for all 12 Optimized clusters for each Sample 1 and 2
+# This script was used to generate WordTrees.html interactive webpages
 
 # Import required libraries
 import pandas as pd
@@ -127,6 +127,5 @@ def createWordTrees(sampNo=1):
         sentences = []
 
 
-# Generate Word Trees for all 12 clusters for Sample 1 & 2
+# Generate Word Trees
 createWordTrees()
-#createWordTrees(sampNo=2)
